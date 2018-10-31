@@ -13,19 +13,11 @@ $slug = $_SERVER["REQUEST_URI"];
 $slugExploded = explode("?", $slug);
 $slug = $slugExploded[0];
 
-//  /users/add/
-$slug = trim($slug, "/");
-//  users/add
-//différencier le controller de l'action
-$slugExploded = explode("/", $slug);
-//Array ( [0] => users [1] => add )
+require "core/Routing.class.php";
+$routes = Routing::getRoute($slug);
+extract($routes);
 
-//donc on se retrouve aves $c et $a
-$c = ucfirst(!empty($slugExploded[0])?$slugExploded[0]:"pages")."Controller";
-$a = (!empty($slugExploded[1])?$slugExploded[1]:"default")."Action";
-$cPath = "controllers/".$c.".class.php";
-//echo $c." ".$a;
-//UsersController addAction
+
 
 //vérifier l'existence du fichier et de la class controller
 if( file_exists($cPath) ){
