@@ -24,4 +24,32 @@ class Routing{
 	}
 
 
+	public static function getSlug($c, $a){
+		$routes = yaml_parse_file(self::$routeFile);
+
+		foreach ($routes as $slug => $cAndA) {
+			
+			if( !empty($cAndA["controller"]) && 
+				!empty($cAndA["action"]) && 
+				$cAndA["controller"] == $c &&
+				$cAndA["action"] == $a){
+					return $slug;
+				}
+
+		}
+
+		return null;
+
+	}
+
 }
+
+
+
+
+
+
+
+
+
+

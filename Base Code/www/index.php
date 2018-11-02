@@ -1,5 +1,16 @@
 <?php
 
+function myAutoloader($class){
+	$classPath = "core/".$class.".class.php";
+	if(file_exists($classPath)){
+		include $classPath;
+	}
+}
+
+//Cela veut dire que si j'essaye d'instancier une class qui n'existe pas
+//La fonction myAutoloader va être lancée
+spl_autoload_register("myAutoloader");
+
 //Récuperer l'url apres le nom de domaine
 //Utilisation d'une variable SUPER GLOBALE
 //Accessible partout, commenence par $_ et en majuscule
@@ -13,10 +24,8 @@ $slug = $_SERVER["REQUEST_URI"];
 $slugExploded = explode("?", $slug);
 $slug = $slugExploded[0];
 
-require "core/Routing.class.php";
 $routes = Routing::getRoute($slug);
 extract($routes);
-
 
 
 //vérifier l'existence du fichier et de la class controller

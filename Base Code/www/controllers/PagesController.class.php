@@ -2,7 +2,10 @@
 class PagesController{
 	
 	public function defaultAction(){
-		echo "pages default";
+
+
+		$v = new View("homepage", "front");
+		$v->assign("pseudo","prof");
 	}
 	
 

@@ -6,6 +6,8 @@ class UsersController{
 	}
 	
 	public function addAction(){
-		echo "users add";
+	
+		$v = new View("addUser", "front");
+		
 	}
 }
