@@ -1,13 +1,13 @@
 <?php
 class Users extends BaseSQL{
 
-	private $id = null;
-	private $firstname;
-	private $lastname;
-	private $email;
-	private $pwd;
-	private $role=1;
-	private $status=0;
+	protected $id = null;
+	protected $firstname;
+	protected $lastname;
+	protected $email;
+	protected $pwd;
+	protected $role=1;
+	protected $status=0;
 
 	public function __construct(){
 		parent::__construct();
