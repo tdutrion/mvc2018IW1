@@ -1,9 +1,14 @@
 <?php
 
+require "conf.inc.php";
+
 function myAutoloader($class){
 	$classPath = "core/".$class.".class.php";
+	$classModel = "models/".$class.".class.php";
 	if(file_exists($classPath)){
 		include $classPath;
+	}else if(file_exists($classModel)){
+		include $classModel;
 	}
 }
 

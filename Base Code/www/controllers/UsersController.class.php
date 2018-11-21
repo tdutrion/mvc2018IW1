@@ -16,6 +16,7 @@ class UsersController{
 		$user->save();
 
 
+
 		//$v = new View("addUser", "front");
 		
 	}

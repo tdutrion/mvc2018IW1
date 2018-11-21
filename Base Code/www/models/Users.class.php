@@ -1,5 +1,5 @@
 <?php
-class Users{
+class Users extends BaseSQL{
 
 	private $id = null;
 	private $firstname;
@@ -8,6 +8,10 @@ class Users{
 	private $pwd;
 	private $role=1;
 	private $status=0;
+
+	public function __construct(){
+		parent::__construct();
+	}
 
 
 	public function setId($id){
@@ -31,7 +35,6 @@ class Users{
 	public function setStatus($status){
 		$this->status = $status;
 	}
-
 
 
 }
