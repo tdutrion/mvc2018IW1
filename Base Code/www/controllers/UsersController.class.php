@@ -1,4 +1,5 @@
 <?php
+
 class UsersController{
 
 	public function defaultAction(){
@@ -7,7 +8,15 @@ class UsersController{
 	
 	public function addAction(){
 	
-		$v = new View("addUser", "front");
+		$user = new Users();
+		$user->setFirstname("Yves");
+		$user->setLastname("skrzypczyk");
+		$user->setEmail("y.skrzypczyk@gmail.com");
+		$user->setPwd("Test1234");
+		$user->save();
+
+
+		//$v = new View("addUser", "front");
 		
 	}
 
