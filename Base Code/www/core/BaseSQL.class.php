@@ -7,6 +7,7 @@ class BaseSQL{
 	public function __construct(){
 		try{
 			$this->pdo = new PDO(DBDRIVER.":host=".DBHOST.";dbname=".DBNAME,DBUSER,DBPWD);
+
 		}catch(Exception $e){
 			die("Erreur SQL : ".$e->getMessage());
 		}
@@ -23,8 +24,26 @@ class BaseSQL{
 
 		if( is_null($dataChild["id"])){
 			//INSERT
+			//array_keys($dataChild) -> [id, firstname, lastname, email]
+			$sql ="INSERT INTO ".$this->table." ( ". 
+			implode(",", array_keys($dataChild) ) .") VALUES ( :". 
+			implode(",:", array_keys($dataChild) ) .")";
+
+			$query = $this->pdo->prepare($sql);
+			$query->execute( $dataChild );
+
 		}else{
 			//UPDATE
+			foreach ($dataChild as $key => $value) {
+				if( $key != "id")
+				$sqlUpdate[]=$key."=:".$key;
+			}
+
+			$sql ="UPDATE ".$this->table." SET ".implode(",", $sqlUpdate)." WHERE id=:id";
+
+			$query = $this->pdo->prepare($sql);
+			$query->execute( $dataChild );
+
 		}
 
 	}
