@@ -1,22 +1,19 @@
 <?php
 class Users extends BaseSQL{
 
-	protected $id = null;
-	protected $firstname;
-	protected $lastname;
-	protected $email;
-	protected $pwd;
-	protected $role=1;
-	protected $status=0;
+	public $id = null;
+	public $firstname;
+	public $lastname;
+	public $email;
+	public $pwd;
+	public $role=1;
+	public $status=0;
 
 	public function __construct(){
 		parent::__construct();
 	}
 
 
-	public function setId($id){
-		$this->id = $id;
-	}
 	public function setFirstname($firstname){
 		$this->firstname = ucwords(strtolower(trim($firstname)));
 	}
@@ -37,4 +34,9 @@ class Users extends BaseSQL{
 	}
 
 
+
 }
+
+
+
+

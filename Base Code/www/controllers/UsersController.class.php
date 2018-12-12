@@ -7,17 +7,20 @@ class UsersController{
 	}
 	
 	public function addAction(){
-	
 		$user = new Users();
 		$user->setId(1);
-		$user->setFirstname("Yves");
-		$user->setLastname("skrzypczyk");
 		$user->setEmail("y.skrzypczyk@gmail.com");
-		$user->setPwd("Test1234");
 		$user->save();
 
+	
+		$v = new View("addUser", "front");
 
-		//$v = new View("addUser", "front");
+		
+	}
+
+	public function saveAction(){
+	
+		$v = new View("addUser", "front");
 		
 	}
 
