@@ -8,19 +8,21 @@ class UsersController{
 	
 	public function addAction(){
 		$user = new Users();
-		$user->setId(1);
-		$user->setEmail("y.skrzypczyk@gmail.com");
-		$user->save();
+		$form = $user->getRegisterForm();
 
 	
 		$v = new View("addUser", "front");
-
+		$v->assign("form", $form);
 		
 	}
 
 	public function saveAction(){
+		$user = new Users();
+		$form = $user->getRegisterForm();
+
 	
 		$v = new View("addUser", "front");
+		$v->assign("form", $form);
 		
 	}
 
