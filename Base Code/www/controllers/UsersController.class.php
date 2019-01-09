@@ -14,6 +14,7 @@ class UsersController{
 		$v = new View("addUser", "front");
 		$v->assign("form", $form);
 		
+		
 	}
 
 	public function saveAction(){
@@ -29,14 +30,17 @@ class UsersController{
 		if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
 			
 			$validator = new Validator($form,$data);
+			$form["errors"] = $validator->errors;
 
-			if(empty($validator->errors)){
+			if(empty($errors)){
 				$user->setFirstname($data["firstname"]);	
 				$user->setLastname($data["lastname"]);
 				$user->setEmail($data["email"]);
 				$user->setPwd($data["pwd"]);
 				$user->save();
 			}
+
+			
 
 		}
 
