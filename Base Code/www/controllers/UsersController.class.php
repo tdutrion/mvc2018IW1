@@ -52,8 +52,29 @@ class UsersController{
 
 
 	public function loginAction(){
+
+		$user = new Users();
+		$form = $user->getLoginForm();
+
+
+
+		$method = strtoupper($form["config"]["method"]);
+		$data = $GLOBALS["_".$method];
+		if( $_SERVER['REQUEST_METHOD']==$method && !empty($data) ){
+			
+			$validator = new Validator($form,$data);
+			$form["errors"] = $validator->errors;
+
+			if(empty($errors)){
+				//Connexion avec token
+				//$token = md5(substr(uniqid().time(), 4, 10)."mxu(4il");
+
+			}
+
+		}
 	
 		$v = new View("loginUser", "front");
+		$v->assign("form", $form);
 		
 	}
 
