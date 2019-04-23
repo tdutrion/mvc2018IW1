@@ -33,13 +33,26 @@ $slug = $slugExploded[0];
 $routes = Routing::getRoute($slug);
 extract($routes);
 
+$container = [
+    Users::class => function($container) {
+        return new Users();
+    },
+    UsersController::class => function($container) {
+        $usersController = $container[Users::class]($container);
+
+        return new UsersController($usersController);
+    },
+    PagesController::class => function($container) {
+        return new PagesController();
+    },
+];
 
 //vérifier l'existence du fichier et de la class controller
 if (file_exists($cPath)) {
     include $cPath;
     if (class_exists($c)) {
-        //instancier dynamiquement le controller
-        $cObject = new $c();
+        //récupérer le controller depuis le container
+        $cObject = $container[$c]($container);
         //vérifier que la méthode (l'action) existe
         if (method_exists($cObject, $a)) {
             //appel dynamique de la méthode

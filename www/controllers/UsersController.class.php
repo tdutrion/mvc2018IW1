@@ -2,6 +2,13 @@
 
 class UsersController
 {
+    private $users;
+
+    public function __construct(Users $users)
+    {
+         $this->users = $users;
+    }
+
     public function defaultAction()
     {
         echo "users default";
@@ -9,8 +16,7 @@ class UsersController
     
     public function addAction()
     {
-        $user = new Users();
-        $form = $user->getRegisterForm();
+        $form = $this->users->getRegisterForm();
 
     
         $v = new View("addUser", "front");
@@ -19,8 +25,7 @@ class UsersController
 
     public function saveAction()
     {
-        $user = new Users();
-        $form = $user->getRegisterForm();
+        $form = $this->users->getRegisterForm();
 
         //Est ce qu'il y a des données dans POST ou GET($form["config"]["method"])
         $method = strtoupper($form["config"]["method"]);
@@ -47,8 +52,7 @@ class UsersController
 
     public function loginAction()
     {
-        $user = new Users();
-        $form = $user->getLoginForm();
+        $form = $this->users->getLoginForm();
 
 
 
